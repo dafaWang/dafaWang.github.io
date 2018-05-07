@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,设计模式," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。">
+<meta name="keywords" content="python,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习-装饰器">
+<meta property="og:url" content="http://wangdafa.club/2018/04/02/python学习-装饰器/index.html">
+<meta property="og:site_name" content="Wang.DaFa&#39;s Note">
+<meta property="og:description" content="装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T14:12:15.574Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习-装饰器">
+<meta name="twitter:description" content="装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wangdafa.club/2018/04/02/python学习-装饰器/"/>
+
+
+
+
+
+  <title>python学习-装饰器 | Wang.DaFa's Note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wang.DaFa's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">你的生活取决于你对生活的态度.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wangdafa.club/2018/04/02/python学习-装饰器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王大发">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang.DaFa's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">python学习-装饰器</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T16:35:42+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/python学习-装饰器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/02/python学习-装饰器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
+<p>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。</p>
+<a id="more"></a>
+<h4 id="python的装饰器是为了实现开闭原则而生的"><a href="#python的装饰器是为了实现开闭原则而生的" class="headerlink" title="python的装饰器是为了实现开闭原则而生的"></a>python的装饰器是为了实现开闭原则而生的</h4><h4 id="一旦投入使用的代码就不能做修改了-封闭原则"><a href="#一旦投入使用的代码就不能做修改了-封闭原则" class="headerlink" title="一旦投入使用的代码就不能做修改了(封闭原则)"></a>一旦投入使用的代码就不能做修改了(封闭原则)</h4><p>比如:<br>　　我写了几个方法,现在老板让我在这几个方法的基础上,计算一下方法执行消耗的时间,因为现在这几个方法,有很多客户已经在使用了,所以不能对原函数做修改(封闭原则),而且又得能计算消耗的时间,因为可能要对很多函数做修改,所以最好找一个通用简单的方法</p>
+<h4 id="这时候-装饰器就是最好的选择了"><a href="#这时候-装饰器就是最好的选择了" class="headerlink" title="这时候,装饰器就是最好的选择了"></a>这时候,装饰器就是最好的选择了</h4><p>比如,我已经写了两个func():</p>
+<pre><code>def func1():
+    print(&quot;func1  is  running.....&quot;)
+    time.sleep(1)
+def func2():
+    print(&quot;func2  is  running.....&quot;)
+    time.sleep(2)
+</code></pre><p>现在我要用装饰器对现在已有的这两个函数做修改,增加其原有功能</p>
+<h5 id="在使用之前-必须要知道python的三个知识点"><a href="#在使用之前-必须要知道python的三个知识点" class="headerlink" title="在使用之前,必须要知道python的三个知识点"></a>在使用之前,必须要知道python的三个知识点</h5><h5 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1.作用域"></a>1.作用域</h5><h5 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2.高阶函数"></a>2.高阶函数</h5><h5 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3.闭包"></a>3.闭包</h5><p>首先,我们定义一个专门用来计算函数消耗时间的函数spend_time,传入的参数就是我们要计算时间的函数x</p>
+<pre><code>  def spend_time(x):  #x为我们要计算的函数---(高阶函数特性  函数可以作为参数)
+      start = time.time() #记录开始时间
+      x() #要计算的函数执行
+      end = time.time()#记录结束时间
+      print(&quot;spend    %   秒&quot;%(end - start))
+
+
+  spend_time(func1)
+  spend_time(func2)
+#执行结果:
+  #func1  is  running.....
+  #spend   1.0000572204589844 秒
+  #func2  is  running.....
+  #spend   2.0001144409179688  秒
+</code></pre><p>这样写确实可以实现功能了,而且也不会太麻烦,但是只能调用spend_time这个方法才可以计算出消耗时间,有什么办法可以让我们调用func1()或者func2()就可以实现呢???</p>
+<p>我们对spend_time函数做一下修改</p>
+<pre><code>def spend_time(func):
+    def inner():
+        start = time.time() #记录开始时间
+        x() #要计算的函数执行
+        end = time.time()#记录结束时间
+        print(&quot;spend    %   秒&quot;%(end - start))
+    return inner #最后把inner这个函数返回(高阶函数特性,闭包)
+</code></pre><p>这时,我们就可重新给func1和func2赋值</p>
+<pre><code>func1 = spend_time(func1)#这里的spend_time(func1)  实际上是inner函数
+func2 = spend_time(func2)#同上
+</code></pre><p>这个时候直接使用func1和func2函数的结果就和之前使用spend_time()是一样的了</p>
+<pre><code>func1()
+func2()
+#执行结果:
+#func1   is   running...
+#spend   1.0000574588775635 秒
+#func2   is   running...
+#spend   2.0001144409179688 秒
+</code></pre><h2 id="这就是装饰器…-↑"><a href="#这就是装饰器…-↑" class="headerlink" title="这就是装饰器….↑"></a>这就是装饰器….↑</h2><p>然而,每次在使用装饰器的时候都要给原有函数重新赋值是不是相当麻烦?<br>每次都要调用<br>func1 = spend_time(func1)<br>func2 = spend_time(func2)<br>是一件必要且有规律可寻的重复的工作<br>python已经很好的替我们做了这个工作</p>
+<h3 id="在我们定义了spend-time函数的基础上-在要修改的函数上面加上-spend-time-这个注解-就可以实现类似"><a href="#在我们定义了spend-time函数的基础上-在要修改的函数上面加上-spend-time-这个注解-就可以实现类似" class="headerlink" title="在我们定义了spend_time函数的基础上,在要修改的函数上面加上@spend_time 这个注解,就可以实现类似"></a>在我们定义了spend_time函数的基础上,在要修改的函数上面加上@spend_time 这个注解,就可以实现类似</h3><h3 id="func1-spend-time-func1-这样的赋值代码了"><a href="#func1-spend-time-func1-这样的赋值代码了" class="headerlink" title="func1 = spend_time(func1)这样的赋值代码了"></a>func1 = spend_time(func1)这样的赋值代码了</h3><pre><code>def spend_time(fun):
+    def inner():
+        starttime = time.time()
+        fun()
+        end_time = time.time()
+        print(&apos;spend   %s &apos; % (end_time - starttime))
+    return inner
+
+
+@spend_time
+def fun1():
+    print(&apos;func1   is   running...&apos;)
+    time.sleep(1)
+
+
+@spend_time
+def fun2():
+    print(&apos;func2   is   running...&apos;)
+    time.sleep(2)
+
+
+# fun1 = spend_time(fun1)
+# fun2 = spend_time(fun2)
+
+fun1()
+fun2()
+
+执行结果
+func1   is   running...
+spend   1.0000574588775635 
+func2   is   running...
+spend   2.0001144409179688 
+</code></pre><h3 id="回到最初的起点"><a href="#回到最初的起点" class="headerlink" title="回到最初的起点:"></a>回到最初的起点:</h3><p><strong>我们要给每个函数增加一些功能的话只需要将功能定义出来,在要修改的函数上加上</strong><br><strong>@装饰器名称就可以了,简单粗暴</strong></p>
+<h5 id="拓展–装饰设计模式"><a href="#拓展–装饰设计模式" class="headerlink" title="拓展–装饰设计模式"></a>拓展–<a href="https://baike.baidu.com/item/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/10158540?fr=aladdin" target="_blank" rel="noopener">装饰设计模式</a></h5><h2 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h2><h3 id="我们用一个例子来学习"><a href="#我们用一个例子来学习" class="headerlink" title="我们用一个例子来学习"></a>我们用一个例子来学习</h3><h4 id="需求-我们需要做一个登陆系统-如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录-如果已经登录了-就跳转目标页面-主页或者产品页"><a href="#需求-我们需要做一个登陆系统-如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录-如果已经登录了-就跳转目标页面-主页或者产品页" class="headerlink" title="需求:我们需要做一个登陆系统,如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录,如果已经登录了,就跳转目标页面(主页或者产品页)"></a>需求:我们需要做一个登陆系统,如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录,如果已经登录了,就跳转目标页面(主页或者产品页)</h4><p><strong>需求本质内容实际上是跳转目标页面,在这个基础上增加登录功能,并在登录功能基础上增加登录类型选择</strong></p>
+<p>首先我们需要一个全局变量来存储用户的登录状态,</p>
+<pre><code>isLogin = False
+</code></pre><p>其次,定义主要跳转函数</p>
+<pre><code>def turn_to_home():
+    print(&apos;跳转主页面.....&apos;)
+def turn_to_prod():
+    print(&quot;跳转产品页......&quot;)
+</code></pre><p>在类似的方法中增加功能,我们使用装饰器</p>
+<pre><code>def check_login(func): #传入具体的跳转操作
+    def inner():
+        global isLogin #在这里我们需要声明这里的登录判断flag是全局的变量
+        if isLogin:
+            print(&quot;用户已经登录了....&quot;)
+            func() #执行具体的跳转操作
+        else:
+            print(&quot;用户还未登陆,去登陆........&quot;)
+            print(&quot;登录成功&quot;)
+            func() #登录成功,执行具体跳转操作
+            isLogin = True  #将用户登录状态修改为已登录
+    return inner
+</code></pre><p>这样,一个带有登录判断功能的装饰器就写好了<br>我们重新定义具体登录操作的函数</p>
+<pre><code>@check_login
+def turn_to_home():
+    print(&apos;跳转主页面.....&apos;)
+@check_login
+def turn_to_prod():
+    print(&quot;跳转产品页......&quot;)
+
+turn_to_home()
+turn_to_prod()
+
+
+#运行结果:
+#用户还未登录,去登陆......
+#登录成功
+#跳转主页面......
+#用户已经登录了....
+#跳转产品页
+</code></pre><p>现在,登录判断功能已经添加了,还需要添加一个登录类型区分</p>
+<p>我们再定义一个函数,并且将之前的装饰器作为他的局部函数和返回参数放进去,这个函数的参数就可以被我们用来做登录类型区分来使用了</p>
+<pre><code>def check_login_type(login_type):
+    def check_login(func): #传入具体的跳转操作
+        def inner():
+            global isLogin #在这里我们需要声明这里的登录判断flag是全局的变量
+            if isLogin:
+                print(&quot;用户已经登录了....%s登录&quot; % login_type)
+                func() #执行具体的跳转操作
+            else:
+                print(&quot;用户还未登陆,去登陆........跳转%s登录&quot;%login_type)
+                print(&quot;登录成功&quot;)
+                func() #登录成功,执行具体跳转操作
+                isLogin = True  #将用户登录状态修改为已登录
+        return inner
+    return check_login
+</code></pre><p>我们再重新定义具体跳转方法的时候就可以将登录类型作为装饰器的参数传入</p>
+<pre><code>@check_login_type(&quot;微博&quot;)
+def turn_to_home():
+    print(&apos;跳转主页面.....&apos;)
+@check_login_type(&quot;微信&quot;)
+def turn_to_prod():
+    print(&quot;跳转产品页......&quot;)
+turn_to_home()
+turn_to_prod()
+
+#执行结果:
+#用户还未登录,去登陆......跳转微博登录
+#登录成功
+#跳转主页面......
+#用户已经登录了....
+#跳转产品页
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>听说有人要打赏，我赶紧机智的提上裤子跑来贴上二维码</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_pay.png" alt="王大发 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali_pay.png" alt="王大发 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/android-H5开发入门/" rel="next" title="Hybrid app入门">
+                <i class="fa fa-chevron-left"></i> Hybrid app入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/03/5-交易成本/" rel="prev" title="5.交易成本">
+                5.交易成本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-tumblr"><p>tumblr</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=17b33071d8574"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+    
+    <div class="comments" id="comments">
+    </div>
+    
+    
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="王大发" />
+            
+              <p class="site-author-name" itemprop="name">王大发</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dafaWang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#python的装饰器是为了实现开闭原则而生的"><span class="nav-number">1.</span> <span class="nav-text">python的装饰器是为了实现开闭原则而生的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一旦投入使用的代码就不能做修改了-封闭原则"><span class="nav-number">2.</span> <span class="nav-text">一旦投入使用的代码就不能做修改了(封闭原则)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这时候-装饰器就是最好的选择了"><span class="nav-number">3.</span> <span class="nav-text">这时候,装饰器就是最好的选择了</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在使用之前-必须要知道python的三个知识点"><span class="nav-number">3.1.</span> <span class="nav-text">在使用之前,必须要知道python的三个知识点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-作用域"><span class="nav-number">3.2.</span> <span class="nav-text">1.作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-高阶函数"><span class="nav-number">3.3.</span> <span class="nav-text">2.高阶函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-闭包"><span class="nav-number">3.4.</span> <span class="nav-text">3.闭包</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这就是装饰器…-↑"><span class="nav-number"></span> <span class="nav-text">这就是装饰器….↑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在我们定义了spend-time函数的基础上-在要修改的函数上面加上-spend-time-这个注解-就可以实现类似"><span class="nav-number"></span> <span class="nav-text">在我们定义了spend_time函数的基础上,在要修改的函数上面加上@spend_time 这个注解,就可以实现类似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#func1-spend-time-func1-这样的赋值代码了"><span class="nav-number"></span> <span class="nav-text">func1 = spend_time(func1)这样的赋值代码了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到最初的起点"><span class="nav-number"></span> <span class="nav-text">回到最初的起点:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#拓展–装饰设计模式"><span class="nav-number">0.1.</span> <span class="nav-text">拓展–装饰设计模式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数的装饰器"><span class="nav-number"></span> <span class="nav-text">带参数的装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们用一个例子来学习"><span class="nav-number"></span> <span class="nav-text">我们用一个例子来学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求-我们需要做一个登陆系统-如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录-如果已经登录了-就跳转目标页面-主页或者产品页"><span class="nav-number">1.</span> <span class="nav-text">需求:我们需要做一个登陆系统,如果用户没有登录的话就跳转登录并可以选择微博登录或者微信登录,如果已经登录了,就跳转目标页面(主页或者产品页)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王大发</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客全站共：</span>
+    
+    <span title="Site words total count">字</span>
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'pDkWz3xuhl4upM0ObXMVgMxt-gzGzoHsz',
+        appKey: 'LNXzRRakQ7bSabww6I0OXphJ',
+        placeholder: '来都来了，不皮一下你会开心么？',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
