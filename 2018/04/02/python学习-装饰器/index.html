@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Wang.DaFa&#39;s Note">
 <meta property="og:description" content="装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T14:12:15.574Z">
+<meta property="og:updated_time" content="2018-05-09T14:29:21.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python学习-装饰器">
 <meta name="twitter:description" content="装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。">
@@ -395,7 +395,26 @@ def func2():
     print(&quot;func2  is  running.....&quot;)
     time.sleep(2)
 </code></pre><p>现在我要用装饰器对现在已有的这两个函数做修改,增加其原有功能</p>
-<h5 id="在使用之前-必须要知道python的三个知识点"><a href="#在使用之前-必须要知道python的三个知识点" class="headerlink" title="在使用之前,必须要知道python的三个知识点"></a>在使用之前,必须要知道python的三个知识点</h5><h5 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1.作用域"></a>1.作用域</h5><h5 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2.高阶函数"></a>2.高阶函数</h5><h5 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3.闭包"></a>3.闭包</h5><p>首先,我们定义一个专门用来计算函数消耗时间的函数spend_time,传入的参数就是我们要计算时间的函数x</p>
+<h5 id="在使用之前-必须要知道python的三个知识点"><a href="#在使用之前-必须要知道python的三个知识点" class="headerlink" title="在使用之前,必须要知道python的三个知识点"></a>在使用之前,必须要知道python的三个知识点</h5><h5 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1.作用域"></a>1.作用域</h5><h5 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2.高阶函数"></a>2.高阶函数</h5><h5 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3.闭包"></a>3.闭包</h5><p>补充：闭包</p>
+<pre><code>def outer(x):
+    def inner(y):
+        nonlocal x
+        x += y
+        print(x)
+    return inner
+
+a = outer(5)
+a(3)
+a(8)
+
+输出结果： 8 ， 16 
+inner内部函数，拿到了外部函数outer的局部变量x的引用，在执行到a = outer(5)后，outer函数弹栈，
+但是因为inner有outer函数临时变量的引用，outer将x变量绑定给内置函数inner，所以即使outer函数不在内存中了，
+还是可以使用其局部变量x，x就为 闭包变量（外函数绑定给内函数的局部变量）
+而且根据上述操作可知，闭包变量实际上只有一份，每次开启内函数都在使用同一份闭包变量
+
+所以，闭包可以用来做单例
+</code></pre><p>首先,我们定义一个专门用来计算函数消耗时间的函数spend_time,传入的参数就是我们要计算时间的函数x</p>
 <pre><code>  def spend_time(x):  #x为我们要计算的函数---(高阶函数特性  函数可以作为参数)
       start = time.time() #记录开始时间
       x() #要计算的函数执行
@@ -707,7 +726,7 @@ turn_to_prod()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

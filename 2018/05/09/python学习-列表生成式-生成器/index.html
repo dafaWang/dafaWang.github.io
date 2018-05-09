@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="android,压力测试,Monkey," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -79,26 +79,18 @@
 
 
 
-<meta name="description" content="顾名思义，Monkey就是猴子，Monkey测试，就像一只猴子， 在电脑面前，乱敲键盘在测试。  猴子什么都不懂， 只知道乱敲 通过Monkey程序模拟用户触摸屏幕、滑动Trackball、 按键等操作来对设备上的程序进行压力测试，检测程序多久的时间会发生异常。">
-<meta name="keywords" content="android,压力测试,Monkey">
+<meta name="description" content="列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。 通过列表生成式，我们可以直接创建一个列表。但是如果数据过大会造成内存的严重浪费，如果可以根据某种算法，在循环过程中推算出后面的列表元素，按需取用，就会极大的节省内存空间。 在Python中，这种一边循环一边计算的机制，称为生成器：generator。">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android压力测试Monkey">
-<meta property="og:url" content="http://wangdafa.club/2018/04/02/android压力测试Monkey/index.html">
+<meta property="og:title" content="python学习-列表生成式&#x2F;生成器">
+<meta property="og:url" content="http://wangdafa.club/2018/05/09/python学习-列表生成式-生成器/index.html">
 <meta property="og:site_name" content="Wang.DaFa&#39;s Note">
-<meta property="og:description" content="顾名思义，Monkey就是猴子，Monkey测试，就像一只猴子， 在电脑面前，乱敲键盘在测试。  猴子什么都不懂， 只知道乱敲 通过Monkey程序模拟用户触摸屏幕、滑动Trackball、 按键等操作来对设备上的程序进行压力测试，检测程序多久的时间会发生异常。">
+<meta property="og:description" content="列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。 通过列表生成式，我们可以直接创建一个列表。但是如果数据过大会造成内存的严重浪费，如果可以根据某种算法，在循环过程中推算出后面的列表元素，按需取用，就会极大的节省内存空间。 在Python中，这种一边循环一边计算的机制，称为生成器：generator。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-085449e46823a2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-cb6f8b8b5bf90e3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-9779588fce3809c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-a318e66d1a48deeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-978551b6309b617b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-d804e95f7c752045.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2616527-0d8237099542e765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-04-25T14:12:15.573Z">
+<meta property="og:updated_time" content="2018-05-09T16:00:28.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android压力测试Monkey">
-<meta name="twitter:description" content="顾名思义，Monkey就是猴子，Monkey测试，就像一只猴子， 在电脑面前，乱敲键盘在测试。  猴子什么都不懂， 只知道乱敲 通过Monkey程序模拟用户触摸屏幕、滑动Trackball、 按键等操作来对设备上的程序进行压力测试，检测程序多久的时间会发生异常。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2616527-085449e46823a2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="python学习-列表生成式&#x2F;生成器">
+<meta name="twitter:description" content="列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。 通过列表生成式，我们可以直接创建一个列表。但是如果数据过大会造成内存的严重浪费，如果可以根据某种算法，在循环过程中推算出后面的列表元素，按需取用，就会极大的节省内存空间。 在Python中，这种一边循环一边计算的机制，称为生成器：generator。">
 
 
 
@@ -128,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wangdafa.club/2018/04/02/android压力测试Monkey/"/>
+  <link rel="canonical" href="http://wangdafa.club/2018/05/09/python学习-列表生成式-生成器/"/>
 
 
 
 
 
-  <title>android压力测试Monkey | Wang.DaFa's Note</title>
+  <title>python学习-列表生成式/生成器 | Wang.DaFa's Note</title>
   
 
 
@@ -271,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangdafa.club/2018/04/02/android压力测试Monkey/">
+    <link itemprop="mainEntityOfPage" href="http://wangdafa.club/2018/05/09/python学习-列表生成式-生成器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王大发">
@@ -288,7 +280,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">android压力测试Monkey</h2>
+          <h2 class="post-title" itemprop="name headline">python学习-列表生成式/生成器</h2>
         
 
         <div class="post-meta">
@@ -300,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T15:16:25+08:00">
-                2018-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T22:10:04+08:00">
+                2018-05-09
               </time>
             
 
@@ -323,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -341,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/02/android压力测试Monkey/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/02/android压力测试Monkey/" itemprop="commentCount"></span>
+                <a href="/2018/05/09/python学习-列表生成式-生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/09/python学习-列表生成式-生成器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,129 +383,81 @@
       
 
       
-        <p>　　顾名思义，Monkey就是猴子，Monkey测试，就像一只猴子， 在电脑面前，乱敲键盘在测试。  猴子什么都不懂， 只知道乱敲</p>
-<p>通过Monkey程序模拟用户触摸屏幕、滑动Trackball、 按键等操作来对设备上的程序进行压力测试，检测程序多久的时间会发生异常。</p>
-<a id="more"></a>
-<p>　</p>
-<p>话不多说，直接写步骤：</p>
-<p>　　首先，电脑上需要配置有sdk环境变量和python环境变量<br>自行百度环境变量配置方法</p>
-<p>　　python 下载地址：<br><a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
-<p>　　在手机上装上要测得应用<br>打开开发者选项中的调试模式</p>
-<p>　　链接电脑</p>
-<p>　　cmd打开命令行窗口</p>
-<pre><code>输入  python查看python环境变量是否配置成功
-输入 adb devices 查看当前链接的设备
-</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/2616527-085449e46823a2e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="python环境配置成功"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2616527-cb6f8b8b5bf90e3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功链接手机"></p>
-<p>　　所有指令都有正确回应的时候说明环境变量配置成功，就可以接下来的压力测试了</p>
-<pre><code>在命令行窗口输入
+        <p>列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。</p>
+<p>通过列表生成式，我们可以直接创建一个列表。但是如果数据过大会造成内存的严重浪费，如果可以根据某种算法，在循环过程中推算出后面的列表元素，按需取用，就会极大的节省内存空间。</p>
+<p>在Python中，这种一边循环一边计算的机制，称为生成器：generator。<br><a id="more"></a></p>
+<h3 id="列表生成式："><a href="#列表生成式：" class="headerlink" title="列表生成式："></a>列表生成式：</h3><p>需求：生成一个包含0-9 10个元素的列表：</p>
+<pre><code>a = range(10)
+print(list（a))
+打印输出：[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre><p>需求 生成一个0*0、1*1、2*2…………9*9 10个元素的列表</p>
+<pre><code>a = [x*x for x in range(10)]
+print(a)
+打印输出：[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre><p>需求 生成一个0+5-2、1+5-2…………9+5-2 10个元素的列表</p>
+<pre><code>def f(x):
+    return x+5-2
+a = [f(x) for x in range(10)]
+print(a)
+打印输出：[3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+</code></pre><p>需求 生成1-10中，所有偶数的立方的列表</p>
+<pre><code>a = [x**3 for x in range(1,11) if x%2 == 0]
+print(a)
+打印输出：[8, 64, 216, 512, 1000]
+</code></pre><p>需求 输出“abc”和“123”中字母或数字两两组合的所有可能性，如a1,a3,b2,c1</p>
+<pre><code>a = [x + y for x in &quot;abc&quot; for y in &quot;123&quot;]
+print(a)
+打印输出：[&apos;a1&apos;, &apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;b3&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;c3&apos;]
+</code></pre><h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>　　生成器实际上就是一个可迭代对象（Iterable），可以用for循环遍历</p>
+<h5 id="创建方式一："><a href="#创建方式一：" class="headerlink" title="创建方式一："></a>创建方式一：</h5><p>　　将上面的生成式[]改为（）就是生成器了</p>
+<pre><code>a = (x for x in range(10))
+print(type(a))
+打印结果：&lt;class &apos;generator&apos;&gt;   a为生成器
+在取值的时候可以用for循环
+for i in a:
+    print(i)
+打印结果：0123456789
 
-adb shell monkey 1000
-这个就表示模拟手机1000次随机操作：
-比如说 滑动屏幕，随机点击屏幕某个坐标，音量键，截图 ====
+因为是一个一个的取，当i指向1的地址时，之前的0就没有被指向（引用），就会被python内存回收机制给回收，这样就有效的避免了内存浪费
+</code></pre><h5 id="创建方式二："><a href="#创建方式二：" class="headerlink" title="创建方式二："></a>创建方式二：</h5><p>　　通过yield关键字实现</p>
+<pre><code>def fun1():
+    return 1
+def fun2():
+    yield 1
+print(type(fun1))
+print(type(fun2))
+输出结果：
+&lt;class &apos;int&apos;&gt;
+&lt;class &apos;generator&apos;&gt;
 
-但是如果按照这个操作一遍就会发现，没有指定某个应用啊！
-对的。。。
-确实没有。。。
-</code></pre><p>　　接下来就指定某个应用</p>
-<pre><code>首先我们要获取手机上的应用的包名
+可见普通函数执行之后生成返回数据，yield返回生成器
+</code></pre><p>使用yield关键字实现输出0-9</p>
+<pre><code>def fun():
+    i = 0
+    while i &lt;= 9 :
+        yield i
+        i += 1
+for i in fun():
+    print(i)
 
-还是命令行输入
-adb logcat | grep START
-意思就是说，将还有START标签的应用通过logcat打印出来
+输出打印：0123456789
+</code></pre><p>生成器可以用next（生成器对象）来取值</p>
+<h4 id="生成器-send（value）方法"><a href="#生成器-send（value）方法" class="headerlink" title="生成器 send（value）方法"></a>生成器 send（value）方法</h4><p>send（）方法和next一样，同样可以从生成器中取值，不同的是它可以向生成器中传输数据</p>
+<p><strong>注意：send之前如果没调用next（）方法，第一次send需要传None—send(None)</strong></p>
+<pre><code>def fun():                   #步骤描述
+    print(&quot;step1&quot;)            # 2
+    data = yield 1            #  3  # 6
+    print(&quot;step2&quot;)            # 7
+    yield data                # 8
+f = fun()
+print(f.send(None))                #  1    # 4
+print(f.send(&quot;lalala&quot;))                #  5   # 9
 
-比如说我要测试一个手机自带的闹钟程序：
-点开手机上的闹钟app
-输入    adb logcat | grep START
-</code></pre><p>　　下图为窗口打印的log日志</p>
-<p>   <img src="http://upload-images.jianshu.io/upload_images/2616527-9779588fce3809c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>　　你现在手机的显示界面就是闹钟app的首页，<br>其中cmp后面跟着的就是闹钟这个应用的包名<br>从后面也可以看出来我用的是魅族手机。</p>
-<p>　　获取到了想测试的应用的包名之后就可以给指定应用做压力测试了：</p>
-<pre><code>命令行输入
-adb shell monkey -p 应用包名 测试的事件数
-</code></pre><p>　　我这里就输入<br>adb shell monkey -p com.android.alarmclock 1000</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2616527-a318e66d1a48deeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="压力测试结果"></p>
-<p>　　上图为压力测试结果，可以看到，我的测试事件是1000个，injected显示的结果也是执行了1000次测试，说明，每一次都通过了没有问题</p>
-<p>再来一个出问题的情况</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2616527-978551b6309b617b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
-<p>　　可以看到，如果说出了问题，也会打出来具体的错误log，比较方便</p>
-<p>　　如果说你想在每个事件中间加点儿间隔时间的话可以用这个指令</p>
-<pre><code>adb shell monkey --throttle&lt;毫秒数&gt;
-</code></pre><p>　　monkey压力测试还有一个非常有用的功能</p>
-<p>　　因为，每次压力测试，测试的所有事件都是随机产生的，如果遇到问题的话，怎么能让问题重现呢？</p>
-<p>　　这时候就用到了</p>
-<pre><code>adb shell monkey -p 应用包名 -s 自定义数字 事件数
-</code></pre><p>　　这句代码的意思就是说把（事件数）个随机事件装进一个队列中，这个队列的编号就是你自己定义的那个数字编号，如果出了问题你想重现的话，指定同样编号的随机事件队列就可以了</p>
-<p>　　举例：</p>
-<pre><code>第一次压力测试的时候
-adb shell monkey -p 应用包名 -s 120 1000
-执行编号为120的1000次随机事件测试
-
-这时候你发现出了问题了，想重现
-同样再执行一遍这组随机事件就行了
-adb shell monkey -p 应用包名 -s 120 1000
-</code></pre><p>　　如果你不想进行什么其他的没用的操作，比如说截屏，音量大小，只是想测试触摸点击事件的话，也可以做到</p>
-<pre><code>adb shell monkey --pct-touch 事件所占百分比
-</code></pre><p>　　还是以闹钟为例：</p>
-<pre><code>adb shell monkey -p com.android.alarmclock --pct-touch 100 1000
-
-表示100%执行触摸点击测试1000次随机事件
-
-你也可以将测试的事件打印出来
-adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
-</code></pre><p>　　-v表示将测试的事件打印出来</p>
-<p>　　在最顶端可以看到事件的百分比</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2616527-d804e95f7c752045.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="事件百分比"></p>
-<p>　　事件也都为touch点击事件</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2616527-0d8237099542e765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="action事件"></p>
-<p>　　如果在测试期间，应用crash了，测试默认会停止<br>可以使用 </p>
-<pre><code>--ignore-crashes
-</code></pre><p>　　它会使测试在遇到crash的情况是，不自动停止，而是继续执行完指定数目的测试，不过还是会照常打印log</p>
-<p>　　同样，如果应用中主线程执行了耗时操作是，会遇到ANR异常，monkey也会默认终止测试，这是可以用</p>
-<pre><code>--ignore-timeouts
-</code></pre><p>　　来打印错误的同时，继续执行完测试</p>
-<p>　　写到这里发现了阿标的博客：关于制定测试事件写的比较详细，直接copy过来，嘿嘿嘿~~~~</p>
-<pre><code>参数：  --pct-｛+事件类别｝｛+事件类别百分比｝
-
-用于指定每种类别事件的数目百分比（在Monkey事件序列中，该类事件数目占总事件数目的百分比）
-
-
---pct-touch ｛+百分比｝
-
-调整触摸事件的百分比(触摸事件是一个down-up事件，它发生在屏幕上的某单一位置)
-
---pct-motion ｛+百分比｝
-
-调整动作事件的百分比(动作事件由屏幕上某处的一个down事件、一系列的伪随机事件和一个up事件组成)adb shell monkey -p
-
---pct-trackball ｛+百分比｝
-
-调整轨迹事件的百分比(轨迹事件由一个或几个随机的移动组成，有时还伴随有点击)
-
---pct-nav ｛+百分比｝
-
-调整“基本”导航事件的百分比(导航事件由来自方向输入设备的up/down/left/right组成)
-
---pct-majornav ｛+百分比｝
-
-调整“主要”导航事件的百分比(这些导航事件通常引发图形界面中的动作，如：5-way键盘的中间按键、回退按键、菜单按键)
-
---pct-syskeys ｛+百分比｝
-
-调整“系统”按键事件的百分比(这些按键通常被保留，由系统使用，如Home、Back、Start Call、End Call及音量控制键)
-
---pct-appswitch ｛+百分比｝
-
-调整启动Activity的百分比。在随机间隔里，Monkey将执行一个startActivity()调用，作为最大程度覆盖包中全部Activity的一种方法
-
---pct-anyevent ｛+百分比｝
-
-调整其它类型事件的百分比。它包罗了所有其它类型的事件，如：按键、其它不常用的设备按钮、等等
-
---pct -anyevent 100 1000* 指定多个类型事件的百分比：
-</code></pre><p>  　　注意：各事件类型的百分比总数不能超过100%；</p>
-<p>　　重复指定操作测试利用monkey scipt脚本。。。。后面在写吧。。。。╮(╯▽╰)╭</p>
-
+输出结果：step1
+        1
+        step2
+        lalala
+</code></pre>
       
     </div>
     
@@ -559,11 +503,7 @@ adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
-          
-            <a href="/tags/压力测试/" rel="tag"><i class="fa fa-tag"></i> 压力测试</a>
-          
-            <a href="/tags/Monkey/" rel="tag"><i class="fa fa-tag"></i> Monkey</a>
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
           
         </div>
       
@@ -576,8 +516,8 @@ adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/01/qlv格式视频转其他格式/" rel="next" title="qlv格式视频转其他格式">
-                <i class="fa fa-chevron-left"></i> qlv格式视频转其他格式
+              <a href="/2018/05/07/python作用域/" rel="next" title="python学习-作用域">
+                <i class="fa fa-chevron-left"></i> python学习-作用域
               </a>
             
           </div>
@@ -585,10 +525,6 @@ adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/android-H5开发入门/" rel="prev" title="Hybrid app入门">
-                Hybrid app入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -658,8 +594,17 @@ adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -733,6 +678,22 @@ adb shell monkey -v -p com.android.alarmclock --pct-touch 100 1000
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表生成式："><span class="nav-number">1.</span> <span class="nav-text">列表生成式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器"><span class="nav-number">2.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建方式一："><span class="nav-number">2.0.1.</span> <span class="nav-text">创建方式一：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建方式二："><span class="nav-number">2.0.2.</span> <span class="nav-text">创建方式二：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器-send（value）方法"><span class="nav-number">2.1.</span> <span class="nav-text">生成器 send（value）方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
